@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alpha WSX Accounts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    header img {
+      width: 150px;
+      margin-bottom: 10px;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      color: #f34a4a;
+      text-shadow: 0 0 10px #f34a4a;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .product-card {
+      background-color: #1a1a1a;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 0 12px #f34a4a55;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px #f34a4a99;
+    }
+
+    .product-card img {
+      width: 100%;
+      max-height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .product-card p {
+      color: #f34a4a;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .contact-box {
+      margin-top: 40px;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .contact-box p {
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+
+    .contact-box span {
+      color: #f34a4a;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #777;
+      text-align: center;
+      border-top: 1px solid #333;
+      padding-top: 20px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://i.imgur.com/g7bzEuv.png" alt="Logo Alpha WSX" />
+    <h1>Alpha WSX Accounts</h1>
+  </header>
+
+  <section class="product-grid">
+    <!-- Produto com imagem -->
+    <div class="product-card">
+      <img src="https://i.imgur.com/zsDLHgG.jpeg" alt="Conta Roblox">
+      <h3>Conta Roblox</h3>
+      <p>R$ 40,00</p>
+    </div>
+
+    <!-- Produto sem imagem -->
+    <div class="product-card">
+      <h3>Conta Free Fire</h3>
+      <p>R$ 35,00</p>
+    </div>
+
+    <!-- Produto com imagem -->
+    <div class="product-card">
+      <img src="https://i.imgur.com/RUkJKqf.jpg" alt="Conta Fortnite">
+      <h3>Conta Fortnite</h3>
+      <p>R$ 50,00</p>
+    </div>
+
+    <!-- Produto sem imagem -->
+    <div class="product-card">
+      <h3>Conta Minecraft</h3>
+      <p>R$ 45,00</p>
+    </div>
+  </section>
+
+  <section class="contact-box">
+    <h2>Contato</h2>
+    <p>WhatsApp: <span>+55 85 99762-9672</span></p>
+    <p>E-mail: <span>antoniowesley158dual@gmail.com</span></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Alpha WSX Accounts. Todos os direitos reservados.
+  </footer>
+
+</body>
+</html>
