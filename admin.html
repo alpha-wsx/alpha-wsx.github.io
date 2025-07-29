@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Painel Admin - Alpha WSX</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #f34a4a;
+      text-align: center;
+    }
+    .login, .admin-panel {
+      margin-top: 40px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0 15px 0;
+      width: 100%;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      background-color: #f34a4a;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #ff6666;
+    }
+    .product-item {
+      background: #222;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+    }
+    .product-item img {
+      max-width: 100px;
+      max-height: 70px;
+      margin-right: 10px;
+      vertical-align: middle;
+      border-radius: 8px;
+    }
+    .product-details {
+      display: inline-block;
+      vertical-align: middle;
+      max-width: calc(100% - 120px);
+    }
+    .product-actions {
+      margin-top: 10px;
+      text-align: right;
+    }
+    .hidden {
+      display: none;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Painel de Administração - Alpha WSX</h1>
+
+  <div class="login">
+    <h2>Login</h2>
+    <input type="password" id="password" placeholder="Digite a senha" />
+    <button onclick="login()">Entrar</button>
+    <p id="login-error" style="color: #f34a4a;"></p>
+  </div>
+
+  <div class="admin-panel hidden">
+    <h2>Gerenciar Produtos</h2>
+
+    <form id="product-form">
+      <label for="product-name">Nome do Produto</label>
+      <input type="text" id="product-name" placeholder="Ex: Conta Roblox" required />
+
+      <label for="product-price">Preço (R$)</label>
+      <input type="number" id="product-price" min="0" step="0.01" placeholder="Ex: 40.00" required />
+
+      <label for="product-stock">Estoque</label>
+      <input type="number" id="product-stock" min="0" step="1" placeholder="Ex: 10" required />
+
+      <label for="product-image">URL da Imagem (opcional)</label>
+      <input type="url" id="product-image" placeholder="https://..." />
+
+      <button type="submit">Adicionar Produto</button>
+    </form>
+
+    <div id="products-list" style="margin-top: 30px;">
+      <!-- Lista dos produtos aparecerá aqui -->
+    </div>
+  </div>
+
+  <script>
+    const ADMIN_PASSWORD = "admin123";
+
+    let products = [];
+
+    function login() {
+      const passInput = document.getElementById('password');
+      const errorMsg = document.getElementById('login-error');
+      if (passInput.value === ADMIN_PASSWORD) {
+        document.querySelector('.login').classList.add('hidden');
+        document.querySelector('.admin-panel').classList.remove('hidden');
+        errorMsg.innerText = '';
+        renderProducts();
+      } else {
+        errorMsg.innerText = 'Senha incorreta!';
+      }
+    }
+
+    function renderProducts() {
+      const list = document.getElementById('products-list');
+      list.innerHTML = '';
+
+      if (products.length === 0) {
+        list.innerHTML = '<p>Nenhum produto cadastrado.</p>';
+        return;
+      }
+
+      products.forEach((p, i) => {
+        const div = document.createElement('div');
+        div.className = 'product-item';
+
+        const imgHtml = p.image ? `<img src="${p.image}" alt="${p.name}" />` : '';
+        const html = `
+          ${imgHtml}
+          <div class="product-details">
+            <strong>${p.name}</strong><br/>
+            Preço: R$ ${p.price.toFixed(2)}<br/>
+            Estoque: ${p.stock}
+          </div>
+          <div class="product-actions">
+            <button onclick="removeProduct(${i})" style="background:#cc3333;">Excluir</button>
+          </div>
+        `;
+
+        div.innerHTML = html;
+        list.appendChild(div);
+      });
+    }
+
+    function removeProduct(index) {
+      if (confirm('Quer mesmo excluir esse produto?')) {
+        products.splice(index, 1);
+        renderProducts();
+      }
+    }
+
+    document.getElementById('product-form').addEventListener('submit', e => {
+      e.preventDefault();
+
+      const name = document.getElementById('product-name').value.trim();
+      const price = parseFloat(document.getElementById('product-price').value);
+      const stock = parseInt(document.getElementById('product-stock').value, 10);
+      const image = document.getElementById('product-image').value.trim();
+
+      products.push({ name, price, stock, image: image || null });
+
+      e.target.reset();
+      renderProducts();
+    });
+  </script>
+
+</body>
+        </html>
